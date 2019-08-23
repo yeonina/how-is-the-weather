@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <title>날씨 어때?</title>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <img src="./img/sun.png" id="image"></img>
+        <p id="city">서울</p>
+        <p><span id='temp'>25</span><span>℃</span></p>
+      </div>
+      <div>
+        <form id='searchForm'>
+          <input type="search" id="searchText">
+          <i class="fa fa-search"></i>
+        </form>
+      </div>
+    </div>
+    <script src='./data.js'></script>
+    <script src="./config.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
