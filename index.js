@@ -117,15 +117,12 @@ function setWeatherInfo(cityName, weatherInfo) {
  *
  * - 날씨별로 맞추어 배경색상을 변경해보기
  * javasciprt를 사용해 element의 내용 뿐만 아니라 element의 style도 변경할 수 있습니다.
- *
- *
+ * 어떻게 javascript를 사용해 css를 다룰 수 있을까요?
  *
  * 배경 참고 사이트 https://uigradients.com/
  *
  * - 나만의 날씨 이미지로 변경하기
- *
  * 이미지를 수정하거나, 새로운 이미지를 추가해보세요.
  * 원하는 이미지를 찾아 img 폴더에 저장 후 data.js 파일을 수정해보세요.
- *
  *
  */
