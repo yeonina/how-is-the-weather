@@ -37,7 +37,7 @@ function getGeoCode(city) {
     ).then(function(response) {
       response.json().then(function(data) {
         /**
-         * - 아래의 JSON 데이터에서 우리가 필요한 정보만 찾아 resolve에 인풋으로 넣어주세요!
+         * - input으로 받은 data에서 우리가 필요한 정보만 찾아 resolve에 인풋으로 넣어주세요!
          *
          * * resolve에 넘겨주어야 하는 input 형식
          * {
@@ -66,7 +66,7 @@ function getWeatherData(lat, lng) {
     ).then(function(response) {
       response.json().then(function(data) {
         /**
-         * - 아래의 JSON 데이터에서 우리가 필요한 정보만 찾아 resolve에 인풋으로 넣어주세요!
+         * - input으로 받은 data에서 우리가 필요한 정보만 찾아 resolve에 인풋으로 넣어주세요!
          *
          * * resolve에 넘겨주어야 하는 input 형식
          * {
