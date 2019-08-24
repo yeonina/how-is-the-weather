@@ -6,6 +6,9 @@ const input = document.getElementById("searchText");
 const temp = document.getElementById("temp");
 const city = document.getElementById("city");
 const image = document.getElementById("image");
+const body = document.getElementsByTagName('body')[0];
+
+
 
 // 도시 이름을 입력하고, Enter키를 누루면 아래 함수가 실행됩니다.
 searchForm.addEventListener("submit", function(event) {
@@ -36,18 +39,16 @@ function getGeoCode(city) {
       `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${GOOGLE_KEY}`
     ).then(function(response) {
       response.json().then(function(data) {
-        /**
-         * - input으로 받은 data에서 우리가 필요한 정보만 찾아 resolve에 인풋으로 넣어주세요!
-         *
-         * * resolve에 넘겨주어야 하는 input 형식
+        let input = data['results'][0]['geometry']['location'];
+         /* * resolve에 넘겨주어야 하는 input 형식
          * {
          *   lat: 위도,
          *   lng: 경도
          * }
          */
-        console.log("우리가 받은 위치 데이터 ", data);
+        console.log("우리가 받은 위치 데이터 ",(input));
 
-        resolve(); // 여기에 저희가 원하는 형식의 값을 넣어주세요!
+        resolve(input); // 여기에 저희가 원하는 형식의 값을 넣어주세요!
       });
     });
   });
@@ -65,6 +66,10 @@ function getWeatherData(lat, lng) {
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&APPID=${WEATHER_KEY}`
     ).then(function(response) {
       response.json().then(function(data) {
+        let input = {};
+        input['temp']=data['main']['temp'];
+        input['weather']=data['weather'][0]['main']
+        input['icon'] = data['weather'][0]['icon']
         /**
          * - input으로 받은 data에서 우리가 필요한 정보만 찾아 resolve에 인풋으로 넣어주세요!
          *
@@ -74,9 +79,8 @@ function getWeatherData(lat, lng) {
          *    weather: 날씨(데이터에서 weather -> main을 찾아 설정해주세요!)
          * }
          */
-        console.log("우리가 받은 날씨 데이터 ", data);
-
-        resolve(); // 여기에 저희가 원하는 형식의 값을 넣어주세요!
+        console.log("우리가 받은 날씨 데이터 ", (input));
+        resolve(input); // 여기에 저희가 원하는 형식의 값을 넣어주세요!
       });
     });
   });
@@ -97,12 +101,19 @@ function setWeatherInfo(cityName, weatherInfo) {
    * 어떻게 Celsius 형식으로 변경할 수 있을까요?
    */
   temp.innerText = weatherInfo.temp; // 이곳에 넣어준 값이 온도로 표시됩니다!
+  temp.innerText = Math.round(Number(temp.innerText)-273.15);
+
 
   /**
    * data.js 파일에 있는 imgLinks 객체를 사용해 날씨에 맞는 이미지를 표시해보세요!
    */
-  const weatherLink = "sun.png";
-  image.src = `./img/${weatherLink}`; // 이곳에 이미지 파일의 경로를 입력해주면 이미지 파일이 표시됩니다.
+  const weatherLink = imgLinks[weatherInfo.weather];//"sun.png";
+  image.src = 'http://openweathermap.org/img/wn/'+weatherInfo.icon+'@2x.png'
+  //`./img/${weatherLink}`; // 이곳에 이미지 파일의 경로를 입력해주면 이미지 파일이 표시됩니다.
+
+
+  body['style']['background'] = bgcolor[weatherInfo.weather];
+
 
   /**
    * 아래의 코드는 어떤 역할을 할까요?
